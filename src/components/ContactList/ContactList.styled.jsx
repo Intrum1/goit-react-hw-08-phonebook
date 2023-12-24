@@ -27,3 +27,7 @@ export const DeleteButton = styled.button`
     background-color: #bd2130;
   }
 `;
+
+export const ItemName = styled.span`
+  font-weight: bold;
+`;

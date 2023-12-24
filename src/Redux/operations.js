@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import Notiflix from 'notiflix';
 
 axios.defaults.baseURL = 'https://657c3a63853beeefdb98f2ed.mockapi.io/api';
 
@@ -9,8 +10,9 @@ export const fetchContacts = createAsyncThunk(
     try {
       const { data } = await axios.get('/contacts');
       return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch ({ error }) {
+      Notiflix.Notify.warning('Oooops, something goes wrong');
+      thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -25,8 +27,9 @@ export const addContact = createAsyncThunk(
         },
       });
       return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch ({ error }) {
+      Notiflix.Notify.warning('Oooops, something goes wrong');
+      thunkAPI.rejectWithValue(error);
     }
   }
 );
@@ -37,8 +40,9 @@ export const deleteContact = createAsyncThunk(
     try {
       const { data } = await axios.delete(`/contacts/${id}`);
       return data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
+    } catch ({ error }) {
+      Notiflix.Notify.warning('Oooops, something goes wrong');
+      thunkAPI.rejectWithValue(error);
     }
   }
 );

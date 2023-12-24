@@ -4,13 +4,12 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectContacts } from '../../Redux/contacts/selectors';
 import { addContact } from '../../Redux/operations';
 import Notiflix from 'notiflix';
-import { Container, Label, Input, Button } from './ContactForm.styled';
+import { Container, Input, Button } from './ContactForm.styled';
 
 export const ContactForm = () => {
-  const { contacts } = useSelector(selectContacts);
-
+  const contacts = useSelector(selectContacts);
   const dispatch = useDispatch();
-  const arrContacts = contacts;
+  const arrContacts = contacts.items;
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -49,26 +48,24 @@ export const ContactForm = () => {
 
   return (
     <Container onSubmit={handleSubmit}>
-      <Label htmlFor="name">Name</Label>
-      <Input
-        type="text"
-        name="name"
-        value={name}
-        required
-        pattern="^[a-zA-Zа-яА-Я]+(([' \-][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-        onChange={handleInputChange}
-      />
-
-      <Label htmlFor="number">Number</Label>
-      <Input
-        type="tel"
-        name="number"
-        pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
-        required
-        value={number}
-        onChange={handleInputChange}
-      />
-
+      <label>
+        <Input
+          type="text"
+          name="name"
+          value={name}
+          placeholder="Name:"
+          onChange={handleInputChange}
+        />
+      </label>
+      <label>
+        <Input
+          type="tel"
+          name="number"
+          value={number}
+          pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
+          onChange={handleInputChange}
+        />
+      </label>
       <Button type="submit">Add contact</Button>
     </Container>
   );

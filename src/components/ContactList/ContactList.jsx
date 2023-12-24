@@ -1,29 +1,38 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectFilter, selectContacts } from '../../Redux/contacts/selectors';
-import { deleteContact } from '../../Redux/operations';
-import { List, ListItem, DeleteButton } from './ContactList.styled';
+import { deleteContact, fetchContacts } from '../../Redux/operations';
+import { useEffect } from 'react';
+import { List, ListItem, ItemName, DeleteButton } from './ContactList.styled';
 
 export const ContactList = () => {
-  const filter = useSelector(selectFilter);
-  const { contacts } = useSelector(selectContacts);
-
-  let normalized = filter ? filter.toLowerCase() : '';
-  const visibleContacts = contacts.filter(contact =>
-    contact.name.toLowerCase().includes(normalized)
-  );
   const dispatch = useDispatch();
+  const filter = useSelector(selectFilter);
+  const contacts = useSelector(selectContacts);
 
-  const deleteContact = contactId => {
+  useEffect(() => {
+    dispatch(fetchContacts());
+  }, [dispatch]);
+
+  let normalizedFilter = filter ? filter.toLowerCase() : '';
+  const filteredContacts = contacts.items.filter(contact =>
+    contact.name.toLowerCase().includes(normalizedFilter)
+  );
+
+  const handlDeleteContact = contactId => {
     dispatch(deleteContact(contactId));
   };
 
   return (
     <List>
-      {visibleContacts.map(contact => (
+      {filteredContacts.map(contact => (
         <ListItem key={contact.id}>
-          {contact.name}: {contact.number}
-          <DeleteButton type="text" onClick={() => deleteContact(contact.id)}>
+          <ItemName>{contact.name}</ItemName>
+          <span>{contact.phone}</span>
+          <DeleteButton
+            type="text"
+            onClick={() => handlDeleteContact(contact.id)}
+          >
             Delete
           </DeleteButton>
         </ListItem>

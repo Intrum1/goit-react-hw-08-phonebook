@@ -1,8 +1,14 @@
 import { Link } from 'react-router-dom';
 
-const FormRegistration = () => {
+const FormRegistration = ({ register }) => {
   const handleSubmit = e => {
     e.preventDefault();
+    const newUser = {
+      firstName: e.target.elements.name.value,
+      email: e.target.elements.email.value,
+      password: e.target.elements.password.value,
+    };
+    register(newUser);
   };
   return (
     <div className="card p-5 mx-auto" style={{ width: 500 }}>
@@ -26,6 +32,17 @@ const FormRegistration = () => {
           </div>
         </div>
         <div className="mb-3">
+          <label htmlFor="exampleInputName" className="form-label">
+            Name
+          </label>
+          <input
+            type="text"
+            name="name"
+            className="form-control"
+            id="exampleInputName"
+          />
+        </div>
+        <div className="mb-3">
           <label htmlFor="exampleInputPassword1" className="form-label">
             Password
           </label>
@@ -37,10 +54,10 @@ const FormRegistration = () => {
           />
         </div>
         <button type="submit" className="btn btn-primary">
-          Login
+          Register
         </button>
       </form>
-      <Link to="/registration">Registration</Link>
+      <Link to="/login">Login</Link>
     </div>
   );
 };
