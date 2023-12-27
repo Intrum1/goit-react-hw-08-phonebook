@@ -1,33 +1,45 @@
 import styled from 'styled-components';
 
 export const List = styled.ul`
-  list-style-type: none;
+  list-style: none;
   padding: 0;
 `;
 
-export const ListItem = styled.li`
-  margin-bottom: 10px;
-  padding: 12px;
-  background-color: #fff;
+export const Item = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
   border: 1px solid #ddd;
+  margin-bottom: 10px;
   border-radius: 4px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 `;
 
-export const DeleteButton = styled.button`
-  background-color: #dc3545;
-  color: #fff;
-  padding: 6px;
+export const ItemName = styled.span`
+  font-weight: bold;
+  margin-right: 10px;
+`;
+export const ContactAvatar = styled.div`
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid black;
+  background: ${({ $avatar }) => `url(${$avatar}) no-repeat center / cover`};
+`;
+
+export const DeleteBtn = styled.button`
+  background-color: #e74c3c;
+  color: white;
+  padding: 8px 12px;
   border: none;
   border-radius: 4px;
   cursor: pointer;
   font-size: 14px;
 
   &:hover {
-    background-color: #bd2130;
+    background-color: #c0392b;
   }
-`;
-
-export const ItemName = styled.span`
-  font-weight: bold;
 `;

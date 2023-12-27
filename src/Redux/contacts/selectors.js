@@ -1,3 +1,7 @@
-export const selectContacts = ({ contacts }) => contacts.items;
-export const selectIsLoading = ({ contacts }) => contacts.isLoading;
-export const selectFilter = state => state.filter.filter;
+export const selectContacts = state => {
+  return state.contacts;
+};
+
+export const selectFilter = state => {
+  return state.filter.filter;
+};

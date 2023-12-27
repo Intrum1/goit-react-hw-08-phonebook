@@ -1,15 +1,15 @@
-import { nanoid } from '@reduxjs/toolkit';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from '../../Redux/contacts/selectors';
-import { addContact } from '../../Redux/operations';
+import { nanoid } from '@reduxjs/toolkit';
+import { Form, Input, Button } from './ContactForm.styled';
 import Notiflix from 'notiflix';
-import { Container, Input, Button } from './ContactForm.styled';
+import { selectContacts } from '../../Redux/contacts/selectors';
+import { addNewContact } from '../../Redux/api';
 
 export const ContactForm = () => {
   const contacts = useSelector(selectContacts);
-  const dispatch = useDispatch();
   const arrContacts = contacts.items;
+  const dispatch = useDispatch();
 
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
@@ -23,6 +23,7 @@ export const ContactForm = () => {
   };
 
   const handleSubmit = e => {
+    e.preventDefault();
     if (!name || !number) {
       Notiflix.Notify.warning('Please write your name and number');
       return;
@@ -41,19 +42,19 @@ export const ContactForm = () => {
       name,
       number,
     };
-    dispatch(addContact(newContact));
+    dispatch(addNewContact(newContact));
     setName('');
     setNumber('');
   };
 
   return (
-    <Container onSubmit={handleSubmit}>
+    <Form onSubmit={handleSubmit}>
       <label>
         <Input
           type="text"
           name="name"
-          value={name}
           placeholder="Name:"
+          value={name}
           onChange={handleInputChange}
         />
       </label>
@@ -61,14 +62,13 @@ export const ContactForm = () => {
         <Input
           type="tel"
           name="number"
+          placeholder="Number:"
           value={number}
           pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
           onChange={handleInputChange}
         />
       </label>
-      <Button type="submit">Add contact</Button>
-    </Container>
+      <Button type="submit">Add Contact</Button>
+    </Form>
   );
 };
-
-export default ContactForm;
