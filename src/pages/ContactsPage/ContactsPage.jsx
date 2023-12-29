@@ -6,7 +6,7 @@ import { Section } from 'components/SectionStyled';
 import React from 'react';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { filterContact } from '../../Redux/Slices/contactSlice';
+import { filterContact } from '../../Redux/Slices/contactsSlice';
 import {
   addContactThunk,
   deleteContactThunk,
