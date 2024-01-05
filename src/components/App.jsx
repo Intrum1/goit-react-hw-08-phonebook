@@ -1,13 +1,12 @@
-import { Suspense, lazy } from 'react';
+import { Suspense, lazy, useEffect } from 'react';
+import { Toaster } from 'react-hot-toast';
 import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
 import Loader from './Loader/Loader';
 import { Navigate, Route, Routes } from 'react-router-dom';
 import { NavLayout } from './Navigation/NavLayout';
 import { getCurrentThunk } from '../Redux//auth/operations';
 import { PublicRoute } from '../Guards/RestrictedRoute';
 import { PrivateRoute } from '../Guards/PrivateRoute';
-import { Toaster } from 'react-hot-toast';
 
 const Home = lazy(() => import('../pages/HomePage/Home'));
 const Register = lazy(() => import('../pages/RegisterPage/Register'));
