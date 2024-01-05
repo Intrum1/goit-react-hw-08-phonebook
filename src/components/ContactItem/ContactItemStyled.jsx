@@ -16,7 +16,7 @@ export const ContactDivStyled = styled.div`
   }
 
   button {
-    background-color: #dc3545;
+    background-color: #ff9b00;
     color: #fff;
     padding: 8px 12px;
     font-size: 14px;

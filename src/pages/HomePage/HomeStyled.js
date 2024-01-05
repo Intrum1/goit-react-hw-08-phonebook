@@ -12,7 +12,7 @@ export const HomeStyled = styled.div`
 `;
 
 export const LinkStyled = styled(Link)`
-  color: #007bff;
+  color: #ff9b00;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s;

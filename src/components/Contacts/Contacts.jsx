@@ -1,12 +1,19 @@
-import PropTypes from 'prop-types';
 import { ContactsDivStyled } from './ContactsStyled';
 import ContactItem from 'components/ContactItem/ContactItem';
+import { deleteContactThunk } from '../../Redux/contacts/operations';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectVisibleContacts } from '../../Redux/selectors';
 
-function Contacts({ filteredContact, onRemoveContact }) {
+function Contacts() {
+  const dispatch = useDispatch();
+  const filteredContacts = useSelector(selectVisibleContacts);
+  const onRemoveContact = contactId => {
+    dispatch(deleteContactThunk(contactId));
+  };
   return (
     <>
       <ContactsDivStyled>
-        {filteredContact.map(({ id, name, number }) => {
+        {filteredContacts.map(({ id, name, number }) => {
           return (
             <ContactItem
               key={id}
@@ -21,16 +28,5 @@ function Contacts({ filteredContact, onRemoveContact }) {
     </>
   );
 }
-
-Contacts.propTypes = {
-  filteredContact: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      name: PropTypes.string.isRequired,
-      number: PropTypes.string.isRequired,
-    })
-  ).isRequired,
-  onRemoveContact: PropTypes.func.isRequired,
-};
 
 export default Contacts;

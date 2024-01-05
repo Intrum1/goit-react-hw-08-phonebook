@@ -2,10 +2,11 @@ import styled from 'styled-components';
 
 export const UserMenuStyled = styled.div`
   display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
   align-items: center;
 
   p {
-    margin-right: 10px;
     font-size: 16px;
     color: #fff;
   }

@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormStyled, FormWrap } from '../RegisterPage/RegisterPage';
 import { useDispatch } from 'react-redux';
-import { logInThunk } from '../../Redux/Thunks/authThunk';
+import { logInThunk } from '../../Redux/auth/operations';
 
 export const Login = () => {
   const dispatch = useDispatch();

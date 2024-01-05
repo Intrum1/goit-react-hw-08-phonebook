@@ -27,7 +27,7 @@ export const FormStyled = styled.form`
   }
 
   button {
-    background-color: #007bff;
+    background-color: #ff9b00;
     color: #fff;
     padding: 10px;
     border: none;

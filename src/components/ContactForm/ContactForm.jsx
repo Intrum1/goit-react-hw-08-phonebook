@@ -1,10 +1,14 @@
-import PropTypes from 'prop-types';
 import { ContactFormStyled } from './ContactFormStyled';
 import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectContacts } from '../../Redux/selectors';
+import { addContactThunk } from '../../Redux/contacts/operations';
 
-function ContactForm({ formAddContact }) {
+function ContactForm() {
   const [nameContact, setNameContact] = useState('');
   const [number, setNumber] = useState('');
+  const dispatch = useDispatch();
+  const contacts = useSelector(selectContacts);
 
   const handleOnChange = evt => {
     const { name, value } = evt.currentTarget;
@@ -18,7 +22,13 @@ function ContactForm({ formAddContact }) {
 
   const handleOnSubmit = evt => {
     evt.preventDefault();
-    formAddContact({ name: nameContact, number });
+    const finded = contacts.find(contact => contact.name === nameContact);
+    if (finded) {
+      alert(`${nameContact} is already in contacts`);
+      return;
+    }
+    dispatch(addContactThunk({ name: nameContact, number }));
+
     reset();
   };
 
@@ -60,9 +70,5 @@ function ContactForm({ formAddContact }) {
     </>
   );
 }
-
-ContactForm.propTypes = {
-  formAddContact: PropTypes.func.isRequired,
-};
 
 export default ContactForm;

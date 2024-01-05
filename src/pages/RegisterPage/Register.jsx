@@ -1,7 +1,7 @@
 import React from 'react';
 import { FormStyled, FormWrap } from './RegisterPage';
 import { useDispatch, useSelector } from 'react-redux';
-import { registerThunk } from '../../Redux/Thunks/authThunk';
+import { registerThunk } from '../../Redux/auth/operations';
 import { useNavigate } from 'react-router-dom';
 import { useEffect } from 'react';
 import { selectUserName } from '../../Redux/selectors';

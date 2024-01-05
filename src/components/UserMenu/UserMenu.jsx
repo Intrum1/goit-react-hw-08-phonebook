@@ -2,7 +2,7 @@ import React from 'react';
 import { UserMenuStyled } from './UserMenuStyled';
 import { useDispatch, useSelector } from 'react-redux';
 import { selectUserName } from '../../Redux/selectors';
-import { logOutThunk } from '../../Redux/Thunks/authThunk';
+import { logOutThunk } from '../../Redux/auth/operations';
 
 export const UserMenu = () => {
   const userName = useSelector(selectUserName);

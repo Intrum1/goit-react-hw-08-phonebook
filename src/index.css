@@ -8,16 +8,10 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-z code {
+
+code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
-nav {
-  background-color: #333;
-  padding: 10px;
-  display: flex;
-  justify-content: space-around;
-  color: white;
 }
 
 button {

@@ -29,7 +29,7 @@ export const ContactFormStyled = styled.form`
   }
 
   button {
-    background-color: #007bff;
+    background-color: #ff9b00;
     color: #fff;
     padding: 10px 15px;
     font-size: 16px;

@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { instance } from './api';
 
 export const token = {
@@ -12,11 +13,13 @@ export const token = {
 export const registerRequest = async userData => {
   const { data } = await instance.post('/users/signup', userData);
   token.set(data.token);
+  toast.success('Ви успішно увійшли');
   return data;
 };
 export const logInRequest = async logInUserData => {
   const { data } = await instance.post('/users/login', logInUserData);
   token.set(data.token);
+  toast.success('Ви успішно увійшли');
   return data;
 };
 
